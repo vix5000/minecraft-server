@@ -1,0 +1,26 @@
+services:
+  mc:
+    image: itzg/minecraft-server:java21-jdk
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      UID: 10000
+      GID: 10001
+      MEMORY: 10G
+      WHITELIST: |
+        user1
+      LOG_TIMESTAMP: true
+      TYPE: "AUTO_CURSEFORGE"
+      CF_API_KEY: ${CF_API_KEY}
+      CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/prominence-2-rpg/files/5838203"
+      CURSEFORGE_FILES: |
+        luna
+      MOTD: "Hello, you are playing prominence-2-rpg v3.0.10. This is a test!"
+      CF_FORCE_REINSTALL_MODLOADER: "false"
+      CF_PARALLEL_DOWNLOADS: 5
+    volumes:
+      # attach the relative directory 'data' to the container's /data path
+      - ./data:/data
